@@ -1,10 +1,17 @@
 package main
+
 import "fmt"
-func main(){
-	var slice[] string
-	slice = append(slice,"Hamburger")
-	slice = append(slice, "Salad")
-        for _, value := range slice {
-		fmt.Println("Food: ",value)
-	}		
+
+func main() {
+	var menu []string = []string{"Burrito", "Pasta"}
+
+	displayItem(menu)
+}
+
+func displayItem(food []string) {
+	food = append(food, "Hamburger")
+	food = append(food, "Salad")
+	for _, value := range food {
+		fmt.Println("\tFood:", value)
+	}
 }
