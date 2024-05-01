@@ -7,6 +7,7 @@ Build a simple CLI app using Cobra package. This jokes-app is a CLI app that has
 - __add__: adds a new joke from the CLI and stores it in the same local [jokes.txt](./jokes.txt) file
 - __list__: lists all jokes stored in jokes.txt
 
+### Steps to Run the Program
 
 #### Build jokes-app 
 ```
@@ -28,8 +29,6 @@ cmd  go.mod  go.sum  jokes-app  jokes.txt  main.go  README.md
 $ cat jokes.txt
 My boss told me that he was going to fire the person with the worst posture. I have a hunch, it might be me.
 ```
-
-### Steps to Run the Program
 
 #### Add your own joke to [jokes.txt](jokes.txt)
 ```
