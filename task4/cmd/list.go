@@ -18,7 +18,6 @@ var listCmd = &cobra.Command{
 			fmt.Println("Error reading file\n")
 		}
 		content := string(filecontent)
-		//fmt.Printf("\n%s\n", content)
 		fmt.Println(fmt.Sprintln(content))
 	},
 }
