@@ -21,12 +21,7 @@ var getCmd = &cobra.Command{
 	Long:  `get a joke from some Jokes API`,
 	Run: func(cmd *cobra.Command, args []string) {
 		getJoke()
-		//	joke := strings.Join(args, " ")
 	},
-}
-
-func init() {
-	rootCmd.AddCommand(getCmd)
 }
 
 type Jokes struct {
@@ -40,7 +35,7 @@ func getJokefromAPI(baseAPI string) []byte {
 	req, err := http.NewRequest(http.MethodGet, baseAPI, nil)
 
 	if err != nil {
-		log.Printf("Could not request a joke - %v", err)
+		log.Println("Could not request a joke - %v\n", err)
 	}
 
 	req.Header.Add("Accept", "application/json")
@@ -48,12 +43,12 @@ func getJokefromAPI(baseAPI string) []byte {
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		log.Printf("Could not make a request to get a joke - %v", err)
+		log.Println("Could not make a request to get a joke - %v\n", err)
 	}
 
 	resBytes, err := io.ReadAll(res.Body)
 	if err != nil {
-		log.Printf("Could not read response body- %v", err)
+		log.Println("Could not read response body- %v\n", err)
 	}
 	return resBytes
 }
@@ -64,11 +59,9 @@ func getJoke() {
 	resBytes := getJokefromAPI(url)
 	j1 := Jokes{}
 	if err := json.Unmarshal(resBytes, &j1); err != nil {
-		log.Printf("Could not unmarshal respone - %v", err)
+		log.Println("Could not unmarshal respone - %v\n", err)
 	}
-
-	fmt.Printf("%v \n", j1.Joke)
-
+	fmt.Println(fmt.Sprintln(j1.Joke))
 	saveJoketoFile(j1.Joke)
 }
 
@@ -76,11 +69,13 @@ func getJoke() {
 func saveJoketoFile(j string) {
 	file, err := os.OpenFile("jokes.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0655)
 	if err != nil {
-		log.Printf("unable to open the file")
+		log.Println("Unable to open the file\n")
+		return
 	}
 
 	defer file.Close()
 	if _, err := file.WriteString(j + "\n"); err != nil {
-		log.Println("Unable to add joke to the file")
+		log.Println("Unable to add joke to the file\n")
+		return
 	}
 }

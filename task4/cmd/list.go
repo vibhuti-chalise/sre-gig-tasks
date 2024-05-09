@@ -15,14 +15,10 @@ var listCmd = &cobra.Command{
 		filecontent, err := os.ReadFile("jokes.txt")
 
 		if err != nil {
-			fmt.Println("Error reading file")
+			fmt.Println("Error reading file\n")
 		}
 		content := string(filecontent)
-		fmt.Printf("\n%s\n", content)
+		//fmt.Printf("\n%s\n", content)
+		fmt.Println(fmt.Sprintln(content))
 	},
-}
-
-func init() {
-	rootCmd.AddCommand(listCmd)
-
 }
